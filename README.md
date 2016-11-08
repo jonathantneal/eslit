@@ -95,6 +95,16 @@ require('eslit').import('path/to/template');
 ${ this.parse('Hello, ${ Promise.resolve("world") }!') }
 ```
 
+##### `Literally.extension`
+
+The automatic extension is `.lit`, but this can be easily changed. For instance, many IDEs already format `.jsx` files correctly.
+
+```js
+const lit = require('eslit');
+
+lit.extension = '.jsx';
+```
+
 [Literally]: https://github.com/jonathantneal/eslit
 [Template Literal]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
 [Template Literals]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
