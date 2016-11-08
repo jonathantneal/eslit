@@ -1,0 +1,20 @@
+%YAML 1.2
+---
+name: Lit Template (Babel)
+file_extensions: [lit, jsx]
+scope: text.html.lit
+
+contexts:
+  main:
+    - match: ''
+      push: template-string-body
+
+  template-string-body:
+    - include: scope:text.html.basic
+    - match: \${
+      scope: keyword.other.substitution.begin.js
+      push:
+        - include: Packages/Babel/JavaScript (Babel).sublime-syntax
+        - match: '}'
+          scope: keyword.other.substitution.end.js
+          pop: true

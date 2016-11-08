@@ -105,6 +105,15 @@ const lit = require('eslit');
 lit.extension = '.jsx';
 ```
 
+### Syntax Helpers
+
+##### Sublime Text
+
+1. Install the **[Babel](https://packagecontrol.io/packages/Babel)** Package.
+-  Select **Tools** > **Developer** > **New Syntax**.
+-  Paste [this syntax](Lit Template (Babel).sublime-syntax).
+-  Save the file as `Lit Template (Babel).sublime-syntax`.
+
 [Literally]: https://github.com/jonathantneal/eslit
 [Template Literal]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
 [Template Literals]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
