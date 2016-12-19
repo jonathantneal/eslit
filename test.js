@@ -1,7 +1,11 @@
-import fs from 'fs';
-import lit from '.';
+// tooling
+const ESLit = require('.');
+const readFile = require('./lib/readFile');
 
-const data = {
+// constants
+const testPath = 'test/basic';
+
+const testData = {
 	heading: Promise.resolve('Guest List'),
 	people: [{
 		given: 'Martin',
@@ -12,29 +16,15 @@ const data = {
 	}]
 };
 
-lit.import('test/basic', data).then((content) => {
-	return new Promise((resolve, reject) => {
-		fs.readFile('test/basic.expect.html', 'utf8', (fserror, fscontent) => {
-			if (fserror) {
-				reject(fserror);
-			} else if (fscontent === content) {
-				resolve(content);
-			} else {
-				reject({
-					expect: fscontent,
-					result: content
-				});
-			}
-		});
-	});
-}).then(() => {
-	console.log('✔ Passed\n');
-
-	process.exit(0);
-}, (error) => {
-	console.log('✖ Failed\n');
-
-	console.warn(error);
-
-	process.exit(1);
-});
+// testing
+ESLit.import(testPath, testData).then(
+	(result) => readFile('test/basic.expect.html').then(
+		(expect) => result === expect ? result : Promise.reject(`Result does not match expectation\n${ JSON.stringify({
+			result,
+			expect
+		}, null, '  ') }`)
+	)
+).then(
+	(result) => console.log(`${ result }\n✔ Passed`) || process.exit(0),
+	(error) => console.log(`${ error }\n✖ Failed`) || process.exit(1)
+);

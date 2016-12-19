@@ -1,0 +1,6 @@
+<table>
+	${ people.map((person) => `<tr>
+		<td>${ person.given }</td>
+		<td>${ person.family }</td>
+	</tr>`) }
+</table>

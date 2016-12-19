@@ -1,6 +1,4 @@
-# Literally
-
-> es templates + async data
+# ESLit <a href="https://github.com/postcss/postcss"><img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg" alt="JavaScript Logo" width="90" height="90" align="right"></a>
 
 [![NPM Version][npm-img]][npm-url]
 [![Build Status][cli-img]][cli-url]
@@ -8,11 +6,7 @@
 [![Changelog][log-image]][log-url]
 [![Gitter Chat][git-image]][git-url]
 
-[Literally] lets you write sugary [Template Literals] that support asynchronous data.
-
-```sh
-npm install --save-dev eslit
-```
+[ESLit] lets you write sugary [Template Literals] supporting asynchronous data.
 
 ```jsx
 <!-- path/to/template -->
@@ -39,10 +33,12 @@ const data = {
 }
 ```
 
-[Literally] put ’em together.
+Let their powers combine.
 
 ```js
-require('eslit').import('path/to/template', data).then(console.log);
+require('eslit').import('path/to/template', data).then(
+	(content) => console.log(content)
+);
 ```
 
 ```html
@@ -59,17 +55,62 @@ require('eslit').import('path/to/template', data).then(console.log);
 </table>
 ```
 
-Those paying attention, yes, we didn’t even `join` that array. Aww yiss.
+## Usage
 
-### Usage
+```sh
+npm install --save-dev eslit
+```
 
-##### `Literally.import`
+### `ESLit`
 
-[Literally] imports a file as a [Template Literal] and returns a promise to render the template once all of its expressions are resolved.
+Returns a promise to render the template once all of its expressions are resolved.
+
+```js
+new ESLit( { ext, cwd }, data );
+```
+
+##### `ext`
+
+Type: `String`  
+Default: `".lit"`
+
+The file extension sometimes used by imports.
+
+##### `cwd`
+
+Type: `Path`  
+Default: `process.cwd()`
+
+The current working directory used by imports.
+
+##### data
+
+The data used by the template.
+
+### `ESLit.import`
+
+Imports a file as a [Template Literal] and returns a promise to render the template once all of its expressions are resolved.
+
+```js
+ESlit.import( template, data, { cwd, ext } );
+```
+
+##### template
+
+Type: `Path`  
+Default: `"."`
+
+The path or package id to import.
+
+- *Paths are relative to the current file or the current working directory.*
+- *Paths without extensions automatically receive `.lit`*
+- *Node modules are supported, using `package.template` or `package.main`*
+
+##### Example
 
 ```js
 // within a module
-require('eslit').import('path/to/template');
+ESLit.import('path/to/template');
 ```
 
 ```jsx
@@ -77,35 +118,57 @@ require('eslit').import('path/to/template');
 ${ this.import('path/to/template') }
 ```
 
-- *Paths are relative to the current file or the current working directory.*
-- *Paths without extensions automatically receive `.lit`*
+### `ESLit.parse`
 
-##### `Literally.parse`
+Parses a string as a [Template Literal] and returns a promise to render the template once all of its expressions are resolved.
 
-[Literally] parses a string as a [Template Literal] and returns a promise to render the template once all of its expressions are resolved.
+```js
+ESlit.parse( template, data, { cwd, ext } );
+```
+
+##### Example
 
 ```js
 // within a module
-require('eslit').import('path/to/template');
+ESLit.import('path/to/template');
 ```
-
 
 ```jsx
 <!-- within a template -->
 ${ this.parse('Hello, ${ Promise.resolve("world") }!') }
 ```
 
-##### `Literally.extension`
+### `ESLit.ext`
 
-The automatic extension is `.lit`, but this can be easily changed. For instance, many IDEs already format `.jsx` files correctly.
+Type: `String`  
+Default: `".lit"`
+
+The file extension sometimes used by imports.
+
+##### Example
 
 ```js
-const lit = require('eslit');
+ESlit.ext = '.jsx';
 
-lit.extension = '.jsx';
+// resolve in order as "example", "example.jsx", or the "example" package
+ESLit.import('example')
 ```
 
-### Syntax Helpers
+#### `ESLit.cwd`
+
+Type: `Path`  
+Default: `process.cwd()`
+
+The current working directory used by imports.
+
+##### Example
+
+```js
+// resolves files and packages from the current parent directory
+ESlit.cwd = path.dirname(process.cwd());
+```
+
+## Syntax Helpers
 
 ##### Sublime Text
 
@@ -114,17 +177,17 @@ lit.extension = '.jsx';
 -  Paste [this syntax](Lit Template (Babel).sublime-syntax).
 -  Save the file as `Lit Template (Babel).sublime-syntax`.
 
-[Literally]: https://github.com/jonathantneal/eslit
+[ESLit]: https://github.com/jonathantneal/eslit
 [Template Literal]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
 [Template Literals]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
 
 [npm-url]: https://www.npmjs.com/package/eslit
-[npm-img]: https://img.shields.io/npm/v/eslit.svg?style=flat-square
+[npm-img]: https://img.shields.io/npm/v/eslit.svg
 [cli-url]: https://travis-ci.org/jonathantneal/eslit
-[cli-img]: https://img.shields.io/travis/jonathantneal/eslit.svg?style=flat-square
+[cli-img]: https://img.shields.io/travis/jonathantneal/eslit.svg
 [lic-url]: LICENSE.md
-[lic-image]: https://img.shields.io/npm/l/eslit.svg?style=flat-square
+[lic-image]: https://img.shields.io/npm/l/eslit.svg
 [log-url]: CHANGELOG.md
-[log-image]: https://img.shields.io/badge/changelog-md-blue.svg?style=flat-square
+[log-image]: https://img.shields.io/badge/changelog-md-blue.svg
 [git-url]: https://gitter.im/jonathantneal/eslit
-[git-image]: https://img.shields.io/badge/chat-gitter-blue.svg?style=flat-square
+[git-image]: https://img.shields.io/badge/chat-gitter-blue.svg

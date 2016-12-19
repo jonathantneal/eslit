@@ -1,4 +1,4 @@
-# Contributing to Literally
+# Contributing to ESLit
 
 You want to help? You rock! Now, take a moment to be sure your contributions
 make sense to everyone else.
@@ -20,11 +20,11 @@ scope, and do avoid unrelated commits.
 1. To begin, [fork this project], clone your fork, and add our upstream.
 	```bash
 	# Clone your fork of the repo into the current directory
-	git clone https://github.com/<your-username>/rlt
+	git clone https://github.com/<your-username>/eslit
 	# Navigate to the newly cloned directory
-	cd rlt
+	cd eslit
 	# Assign the original repo to a remote called "upstream"
-	git remote add upstream https://github.com/jonathantneal/rlt
+	git remote add upstream https://github.com/jonathantneal/eslit
 	# Install the tools necessary for development
 	npm install
 	```
