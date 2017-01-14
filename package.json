@@ -1,6 +1,6 @@
 {
   "name": "eslit",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "es templates + async data",
   "author": "Jonathan Neal <jonathantneal@hotmail.com> (http://jonathantneal.com)",
   "license": "CC0-1.0",
@@ -14,9 +14,11 @@
     "prototype"
   ],
   "scripts": {
-    "lint": "echint && eslint *.js && jscs *.js",
+    "lint": "npm run lint:ec && npm run lint:js",
+    "lint:ec": "echint",
+    "lint:js": "eslint *.js --cache --ignore-pattern .gitignore",
     "prepublish": "npm test",
-    "tape": "node test",
+    "tape": "cd test && npm install && cd .. && node test",
     "test": "npm run lint && npm run tape"
   },
   "engines": {
@@ -31,8 +33,7 @@
     "eslint": "^3.8.1",
     "eslint-config-dev": "^1.0.0",
     "jscs": "^3.0.7",
-    "jscs-config-dev": "^1.0.0",
-    "test-module": "file:./test/module"
+    "jscs-config-dev": "^1.0.0"
   },
   "echint": {
     "extends": "dev"

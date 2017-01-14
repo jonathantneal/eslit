@@ -72,7 +72,7 @@ new ESLit( { ext, cwd }, data );
 ##### `ext`
 
 Type: `String`  
-Default: `".lit"`
+Default: `".html"`
 
 The file extension sometimes used by imports.
 
@@ -103,7 +103,7 @@ Default: `"."`
 The path or package id to import.
 
 - *Paths are relative to the current file or the current working directory.*
-- *Paths without extensions automatically receive `.lit`*
+- *Paths without extensions automatically receive `.html`*
 - *Node modules are supported, using `package.template` or `package.main`*
 
 ##### Example
@@ -141,7 +141,7 @@ ${ this.parse('Hello, ${ Promise.resolve("world") }!') }
 ### `ESLit.ext`
 
 Type: `String`  
-Default: `".lit"`
+Default: `".html"`
 
 The file extension sometimes used by imports.
 

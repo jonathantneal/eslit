@@ -1,6 +1,3 @@
-// tooling
-const path = require('path');
-
 // ESLit
 const ESLit = module.exports = function ESLit({
 	cwd = ESLit.cwd,
@@ -14,11 +11,11 @@ const ESLit = module.exports = function ESLit({
 // ESLit properties
 Object.assign(ESLit, {
 	cwd:    process.cwd(),
-	ext:    '.lit',
+	ext:    '.html',
 	import: (src = '.', data = {}, opts = {}) => (
 		new ESLit(opts)
 	).import(
-		path.resolve(src),
+		src,
 		data
 	),
 	parse:  (content = '', data = {}, opts = {}) => (

@@ -1,0 +1,6 @@
+{
+  "name": "test-submodule",
+  "version": "1.0.0",
+  "template": "index.html",
+  "private": true
+}
