@@ -1,5 +1,9 @@
 # Changes to ESLit
 
+### 2.0.1 (January 13, 2017)
+
+- Updated: Use `cwd` during node resolve
+
 ### 2.0.0 (December 18, 2016)
 
 - Added: Support for packages

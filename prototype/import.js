@@ -36,6 +36,7 @@ module.exports = function (src = '.', data) {
 			}),
 			// source #3 (node resolved)
 			() => nodeResolve(src, {
+				basedir: this.cwd,
 				packageFilter: (pkg) => {
 					// if content exists
 					if (pkg.template) {

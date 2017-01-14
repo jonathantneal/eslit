@@ -1,10 +1,10 @@
-# ESLit <a href="https://github.com/postcss/postcss"><img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg" alt="JavaScript Logo" width="90" height="90" align="right"></a>
+# ESLit [<img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg" alt="JavaScript Logo" width="90" height="90" align="right">][ESLit]
 
 [![NPM Version][npm-img]][npm-url]
 [![Build Status][cli-img]][cli-url]
-[![Licensing][lic-image]][lic-url]
-[![Changelog][log-image]][log-url]
-[![Gitter Chat][git-image]][git-url]
+[![Licensing][lic-img]][lic-url]
+[![Changelog][log-img]][log-url]
+[![Gitter Chat][git-img]][git-url]
 
 [ESLit] lets you write sugary [Template Literals] supporting asynchronous data.
 
@@ -37,7 +37,7 @@ Let their powers combine.
 
 ```js
 require('eslit').import('path/to/template', data).then(
-	(content) => console.log(content)
+  (content) => console.log(content)
 );
 ```
 
@@ -186,8 +186,8 @@ ESlit.cwd = path.dirname(process.cwd());
 [cli-url]: https://travis-ci.org/jonathantneal/eslit
 [cli-img]: https://img.shields.io/travis/jonathantneal/eslit.svg
 [lic-url]: LICENSE.md
-[lic-image]: https://img.shields.io/npm/l/eslit.svg
+[lic-img]: https://img.shields.io/npm/l/eslit.svg
 [log-url]: CHANGELOG.md
-[log-image]: https://img.shields.io/badge/changelog-md-blue.svg
+[log-img]: https://img.shields.io/badge/changelog-md-blue.svg
 [git-url]: https://gitter.im/jonathantneal/eslit
-[git-image]: https://img.shields.io/badge/chat-gitter-blue.svg
+[git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
