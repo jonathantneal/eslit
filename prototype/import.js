@@ -2,8 +2,8 @@
 const ESLit        = require('..');
 const nodeResolve  = require('../lib/node-resolve');
 const path         = require('path');
-const readFile     = require('../lib/readFile');
-const regexpEscape = require('../lib/regexpEscape');
+const readFile     = require('../lib/read-file');
+const regexpEscape = require('../lib/regexp-escape');
 
 // #ESLit.import (import template from a file with data)
 module.exports = function (src = '.', data) {

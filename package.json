@@ -17,12 +17,13 @@
     "lint": "npm run lint:ec && npm run lint:js",
     "lint:ec": "echint",
     "lint:js": "eslint *.js --cache --ignore-pattern .gitignore",
+    "pre-commit": "echo 'Running pre-commit checks...' && exit 0",
     "prepublish": "npm test",
     "tape": "cd test && npm install && cd .. && node test",
     "test": "npm run lint && npm run tape"
   },
   "engines": {
-    "node": ">=6.9.2"
+    "node": ">=6.5.0"
   },
   "dependencies": {
     "babel-core": "^6.18.2"
@@ -32,8 +33,7 @@
     "echint-config-dev": "1.0.0",
     "eslint": "^3.8.1",
     "eslint-config-dev": "^1.0.0",
-    "jscs": "^3.0.7",
-    "jscs-config-dev": "^1.0.0"
+    "pre-commit": "^1.2.2"
   },
   "echint": {
     "extends": "dev"
@@ -41,9 +41,10 @@
   "eslintConfig": {
     "extends": "dev"
   },
-  "jscsConfig": {
-    "preset": "dev"
-  },
+  "pre-commit": [
+    "pre-commit",
+    "lint"
+  ],
   "keywords": [
     "babel",
     "imports",

@@ -1,6 +1,6 @@
 // tooling
 const ESLit = require('.');
-const readFile = require('./lib/readFile');
+const readFile = require('./lib/read-file');
 
 // constants
 const testPath = 'test/basic';
