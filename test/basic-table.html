@@ -1,6 +1,5 @@
 <table>
-	${ people.map((person) => `<tr>
-		<td>${ person.given }</td>
-		<td>${ person.family }</td>
-	</tr>`) }
+	${ people.map(
+		(person) => include('basic-tr', { person: person })
+	) }
 </table>

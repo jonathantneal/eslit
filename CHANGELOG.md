@@ -1,10 +1,12 @@
 # Changes to ESLit
 
-### HEAD (January 13, 2017)
+### 4.0.0 (March 3, 2017)
 
-- Added: pre-commit to development
-- Updated: Local dependencies
+- Added: `include`, `include.parse`, and `include.resolve` methods
+- Added: pre-commit for development
+- Removed: `this.import`, `this.parse`, and `this.resolve`
 - Removed: JSCS from development
+- Updated: Local dependencies
 
 ### 3.0.0 (January 13, 2017)
 

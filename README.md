@@ -21,7 +21,7 @@
 ```
 
 ```js
-const data = {
+const some_data = {
   heading: Promise.resolve('Guest List'),
   people: [{
     given: 'Martin',
@@ -33,10 +33,10 @@ const data = {
 }
 ```
 
-Let their powers combine.
+Now, let their powers combine!
 
 ```js
-require('eslit').import('path/to/template', data).then(
+require('eslit')('path/to/template', some_data).then(
   (content) => console.log(content)
 );
 ```
@@ -61,112 +61,99 @@ require('eslit').import('path/to/template', data).then(
 npm install --save-dev eslit
 ```
 
-### `ESLit`
+### `eslit`
 
-Returns a promise to render the template once all of its expressions are resolved.
+Returns a promise to render the template once all of its inner promises are resolved.
 
 ```js
-new ESLit( { ext, cwd }, data );
+eslit(src, data, { cwd, prefixes, extensions, separator, globopts })
 ```
 
-##### `ext`
+eslit is exposed to templates as `include`, optionally defining additional data and options.
 
-Type: `String`  
-Default: `".html"`
+```html
+<h1>${ heading }</h1>
 
-The file extension sometimes used by imports.
+<table>
+  ${ include('path/to/table') }
+</table>
+```
+
+##### src
+
+Type: `Path`
+
+The path or package id being imported by eslit.
+
+- *Paths are relative to the current file or the current working directory.*
+- *Paths may use glob patterns or omit prefixes and extensions*
+- *Node modules are supported, looking up `package.template` or `package.main`, or using `index.html`*
+
+##### data
+
+The data used by the template.
 
 ##### `cwd`
 
 Type: `Path`  
 Default: `process.cwd()`
 
-The current working directory used by imports.
+The current working directory used by eslit.
 
-##### data
+##### `prefixes`
 
-The data used by the template.
+Type: `Array`  
+Default: `[ "_" ]`
 
-### `ESLit.import`
+The file prefixes sometimes used by eslit.
 
-Imports a file as a [Template Literal] and returns a promise to render the template once all of its expressions are resolved.
+##### `extensions`
 
-```js
-ESlit.import( template, data, { cwd, ext } );
-```
+Type: `Array`  
+Default: `[ ".html", ".jsx" ]`
 
-##### template
+The file extensions sometimes used by eslit.
 
-Type: `Path`  
-Default: `"."`
+##### `separator`
 
-The path or package id to import.
+Type: `String`  
+Default: `"/"`
 
-- *Paths are relative to the current file or the current working directory.*
-- *Paths without extensions automatically receive `.html`*
-- *Node modules are supported, using `package.template` or `package.main`*
+The separator used by eslit to split paths.
 
-##### Example
+##### `globopts`
 
-```js
-// within a module
-ESLit.import('path/to/template');
-```
+Type: `Object`
 
-```jsx
-<!-- within a template -->
-${ this.import('path/to/template') }
-```
+Advanced options used by [node-glob].
 
-### `ESLit.parse`
+---
+
+### `eslit.parse`
 
 Parses a string as a [Template Literal] and returns a promise to render the template once all of its expressions are resolved.
 
 ```js
-ESlit.parse( template, data, { cwd, ext } );
+eslit.parse( string, data, { cwd, prefixes, extensions, separator, globopts } );
 ```
 
-##### Example
+##### `string`
+
+Type: `String`
+
+The string to be parsed.
+
+---
+
+### `eslit.resolve`
+
+Resolves promises used within a [Template Literal].
 
 ```js
-// within a module
-ESLit.import('path/to/template');
+eslit.resolve`Template literal to be ${ Promise.resolve('resolved') }`;
 ```
 
-```jsx
-<!-- within a template -->
-${ this.parse('Hello, ${ Promise.resolve("world") }!') }
-```
-
-### `ESLit.ext`
-
-Type: `String`  
-Default: `".html"`
-
-The file extension sometimes used by imports.
-
-##### Example
-
-```js
-ESlit.ext = '.jsx';
-
-// resolve in order as "example", "example.jsx", or the "example" package
-ESLit.import('example')
-```
-
-#### `ESLit.cwd`
-
-Type: `Path`  
-Default: `process.cwd()`
-
-The current working directory used by imports.
-
-##### Example
-
-```js
-// resolves files and packages from the current parent directory
-ESlit.cwd = path.dirname(process.cwd());
-```
+---
 
 ## Syntax Helpers
 
@@ -180,6 +167,7 @@ ESlit.cwd = path.dirname(process.cwd());
 [ESLit]: https://github.com/jonathantneal/eslit
 [Template Literal]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
 [Template Literals]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+[node-glob]: https://github.com/isaacs/node-glob
 
 [npm-url]: https://www.npmjs.com/package/eslit
 [npm-img]: https://img.shields.io/npm/v/eslit.svg

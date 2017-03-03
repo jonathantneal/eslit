@@ -1,6 +1,6 @@
 {
   "name": "eslit",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "es templates + async data",
   "author": "Jonathan Neal <jonathantneal@hotmail.com> (http://jonathantneal.com)",
   "license": "CC0-1.0",
@@ -14,9 +14,10 @@
     "prototype"
   ],
   "scripts": {
+    "clean": "git clean -X -d -f",
     "lint": "npm run lint:ec && npm run lint:js",
     "lint:ec": "echint",
-    "lint:js": "eslint *.js --cache --ignore-pattern .gitignore",
+    "lint:js": "eslint *.js lib/*.js --cache --ignore-pattern .gitignore",
     "pre-commit": "echo 'Running pre-commit checks...' && exit 0",
     "prepublish": "npm test",
     "tape": "cd test && npm install && cd .. && node test",
@@ -26,13 +27,14 @@
     "node": ">=6.5.0"
   },
   "dependencies": {
-    "babel-core": "^6.18.2"
+    "babel-core": "^6.23.1",
+    "glob": "^7.1.1"
   },
   "devDependencies": {
-    "echint": "^2.1.0",
+    "echint": "^4.0.1",
     "echint-config-dev": "1.0.0",
-    "eslint": "^3.8.1",
-    "eslint-config-dev": "^1.0.0",
+    "eslint": "^3.16.1",
+    "eslint-config-dev": "^2.0.0",
     "pre-commit": "^1.2.2"
   },
   "echint": {
