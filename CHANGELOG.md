@@ -1,5 +1,9 @@
 # Changes to ESLit
 
+### 4.0.1 (March 3, 2017)
+
+- Updated: Handle absolute paths
+
 ### 4.0.0 (March 3, 2017)
 
 - Added: `include`, `include.parse`, and `include.resolve` methods
