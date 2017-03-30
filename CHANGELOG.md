@@ -1,5 +1,9 @@
 # Changes to ESLit
 
+### 4.1.0 (March 30, 2017)
+
+- Added: Support detected modules
+
 ### 4.0.1 (March 3, 2017)
 
 - Updated: Handle absolute paths

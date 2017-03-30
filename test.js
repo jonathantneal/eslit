@@ -19,7 +19,7 @@ const testData = {
 // testing
 eslit(testPath, testData).then(
 	(result) => readFile('test/basic.expect.html').then(
-		(expect) => result.slice(0, -1) === expect ? result : Promise.reject(`Result does not match expectation\n${ JSON.stringify({
+		(expect) => result === expect ? result : Promise.reject(`Result does not match expectation\n${ JSON.stringify({
 			result,
 			expect
 		}, null, '  ') }`)

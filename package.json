@@ -1,6 +1,6 @@
 {
   "name": "eslit",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "es templates + async data",
   "author": "Jonathan Neal <jonathantneal@hotmail.com> (http://jonathantneal.com)",
   "license": "CC0-1.0",
@@ -27,13 +27,13 @@
     "node": ">=6.5.0"
   },
   "dependencies": {
-    "babel-core": "^6.23.1",
+    "babel-core": "^6.24.0",
     "glob": "^7.1.1"
   },
   "devDependencies": {
     "echint": "^4.0.1",
     "echint-config-dev": "1.0.0",
-    "eslint": "^3.16.1",
+    "eslint": "^3.18.0",
     "eslint-config-dev": "^2.0.0",
     "pre-commit": "^1.2.2"
   },

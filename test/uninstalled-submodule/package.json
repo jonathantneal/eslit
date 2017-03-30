@@ -1,0 +1,6 @@
+{
+  "name": "test-uninstalled-submodule",
+  "version": "1.0.0",
+  "template": "uninstalled-submodule.html",
+  "private": true
+}
