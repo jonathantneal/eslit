@@ -3,15 +3,13 @@
 [![NPM Version][npm-img]][npm-url]
 [![Build Status][cli-img]][cli-url]
 [![Licensing][lic-img]][lic-url]
-[![Changelog][log-img]][log-url]
-[![Gitter Chat][git-img]][git-url]
 
-[ESLit] lets you write sugary [Template Literals] supporting asynchronous data.
+[ESLit] is a tool that lets you create templates with embedded JavaScript
+expressions.
 
 ```jsx
-<!-- path/to/template -->
+<!-- some/template.html -->
 <h1>${ heading }</h1>
-
 <table>
   ${ people.map((person) => `<tr>
     <td>${ person.given }</td>
@@ -20,8 +18,11 @@
 </table>
 ```
 
+ESLit templates are easy to use because they’re nothing more than web
+standardized [ES6 Template Strings] with [Promise] support.
+
 ```js
-const some_data = {
+require('eslit')('some/template', {
   heading: Promise.resolve('Guest List'),
   people: [{
     given: 'Martin',
@@ -30,20 +31,13 @@ const some_data = {
     given: 'Bruce',
     family: 'Shark'
   }]
-}
+}).then(console.log)
 ```
 
-Now, let their powers combine!
-
-```js
-require('eslit')('path/to/template', some_data).then(
-  (content) => console.log(content)
-);
-```
+Keeps things simple.
 
 ```html
 <h1>Guest List</h1>
-
 <table>
   <tr>
     <td>Martin</td>
@@ -57,97 +51,59 @@ require('eslit')('path/to/template', some_data).then(
 
 ## Usage
 
+Add [ESLit] to your build tool.
+
 ```sh
-npm install --save-dev eslit
+npm install eslit --save-dev
 ```
 
-### `eslit`
+### Node
 
-Returns a promise to render the template once all of its inner promises are resolved.
+ESLit returns a Promise to render a template once its embedded Promises are resolved.
 
 ```js
-eslit(src, data, { cwd, prefixes, extensions, separator, globopts })
+require('eslit')(src, data, options);
+require('eslit').include(src, data, options);
 ```
 
-eslit is exposed to templates as `include`, optionally defining additional data and options.
+Use the `include` function to bring in other templates.
 
-```html
+```jsx
 <h1>${ heading }</h1>
 
 <table>
-  ${ include('path/to/table') }
+  ${ include('some/table') /* includes some/table.html */ }
 </table>
 ```
 
-##### src
+- **src**: the path or package id being imported.
+- **data**: the data used by the template.
+- **cwd**: the path used by imports (default: `process.cwd()`).
+- Options
+  - **prefixes**: the file prefixes sometimes used by imports (default: `[ "_" ]`).
+  - **extensions**: the file extensions sometimes used by imports (default: `[ ".html", ".jsx" ]`).
+  - **separator**: the separator used to split paths (default: `/`).
+  - **globopts**: the options passed into [node-glob].
 
-Type: `Path`
-
-The path or package id being imported by eslit.
+*Notes*:
 
 - *Paths are relative to the current file or the current working directory.*
 - *Paths may use glob patterns or omit prefixes and extensions*
-- *Node modules are supported, looking up `package.template` or `package.main`, or using `index.html`*
+- *Node modules are supported, using the package `template` or `main` keys, or by using `index.html`*
 
-##### data
+#### parse
 
-The data used by the template.
-
-##### `cwd`
-
-Type: `Path`  
-Default: `process.cwd()`
-
-The current working directory used by eslit.
-
-##### `prefixes`
-
-Type: `Array`  
-Default: `[ "_" ]`
-
-The file prefixes sometimes used by eslit.
-
-##### `extensions`
-
-Type: `Array`  
-Default: `[ ".html", ".jsx" ]`
-
-The file extensions sometimes used by eslit.
-
-##### `separator`
-
-Type: `String`  
-Default: `"/"`
-
-The separator used by eslit to split paths.
-
-##### `globopts`
-
-Type: `Object`
-
-Advanced options used by [node-glob].
-
----
-
-### `eslit.parse`
-
-Parses a string as a [Template Literal] and returns a promise to render the template once all of its expressions are resolved.
+Parse returns a promise to render the template string once its embedded promises are resolved.
 
 ```js
 eslit.parse( string, data, { cwd, prefixes, extensions, separator, globopts } );
 ```
 
-##### `string`
+**string**: The string parsed as a template.
 
-Type: `String`
+#### resolve
 
-The string to be parsed.
-
----
-
-### `eslit.resolve`
-
-Resolves promises used within a [Template Literal].
+Resolve returns a Promise that is resolved once its embedded promises have resolved.
 
 ```js
 eslit.resolve`Template literal to be ${ Promise.resolve('resolved') }`;
@@ -160,13 +116,13 @@ eslit.resolve`Template literal to be ${ Promise.resolve('resolved') }`;
 ##### Sublime Text
 
 1. Install the **[Babel](https://packagecontrol.io/packages/Babel)** Package.
--  Select **Tools** > **Developer** > **New Syntax**.
+- Select **Tools** > **Developer** > **New Syntax**.
 -  Paste [this syntax](Lit Template (Babel).sublime-syntax).
 -  Save the file as `Lit Template (Babel).sublime-syntax`.
 
 [ESLit]: https://github.com/jonathantneal/eslit
-[Template Literal]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
-[Template Literals]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+[ES6 Template Strings]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+[Promise]: https://www.promisejs.org/
 [node-glob]: https://github.com/isaacs/node-glob
 
 [npm-url]: https://www.npmjs.com/package/eslit
@@ -175,7 +131,3 @@ eslit.resolve`Template literal to be ${ Promise.resolve('resolved') }`;
 [cli-img]: https://img.shields.io/travis/jonathantneal/eslit.svg
 [lic-url]: LICENSE.md
 [lic-img]: https://img.shields.io/npm/l/eslit.svg
-[log-url]: CHANGELOG.md
-[log-img]: https://img.shields.io/badge/changelog-md-blue.svg
-[git-url]: https://gitter.im/jonathantneal/eslit
-[git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
