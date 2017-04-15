@@ -78,8 +78,8 @@ Use the `include` function to bring in other templates.
 
 - **src**: the path or package id being imported.
 - **data**: the data used by the template.
-- **cwd**: the path used by imports (default: `process.cwd()`).
 - Options
+  - **cwd**: the path used by imports (default: `process.cwd()`).
   - **prefixes**: the file prefixes sometimes used by imports (default: `[ "_" ]`).
   - **extensions**: the file extensions sometimes used by imports (default: `[ ".html", ".jsx" ]`).
   - **separator**: the separator used to split paths (default: `/`).
@@ -91,9 +91,9 @@ Use the `include` function to bring in other templates.
 - *Paths may use glob patterns or omit prefixes and extensions*
 - *Node modules are supported, using the package `template` or `main` keys, or by using `index.html`*
 
-#### parse
+### ESLit.parse
 
-Parse returns a promise to render the template string once its embedded promises are resolved.
+The parse function returns a promise to render the template string once its embedded promises are resolved.
 
 ```js
 eslit.parse( string, data, { cwd, prefixes, extensions, separator, globopts } );
@@ -101,9 +101,9 @@ eslit.parse( string, data, { cwd, prefixes, extensions, separator, globopts } );
 
 **string**: The string parsed as a template.
 
-#### resolve
+### ESLit.resolve
 
-Resolve returns a Promise that is resolved once its embedded promises have resolved.
+The resolve function returns a Promise that is resolved once its embedded promises have resolved.
 
 ```js
 eslit.resolve`Template literal to be ${ Promise.resolve('resolved') }`;
@@ -117,13 +117,14 @@ eslit.resolve`Template literal to be ${ Promise.resolve('resolved') }`;
 
 1. Install the **[Babel](https://packagecontrol.io/packages/Babel)** Package.
 - Select **Tools** > **Developer** > **New Syntax**.
--  Paste [this syntax](Lit Template (Babel).sublime-syntax).
+-  Paste [this syntax].
 -  Save the file as `Lit Template (Babel).sublime-syntax`.
 
 [ESLit]: https://github.com/jonathantneal/eslit
 [ES6 Template Strings]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
 [Promise]: https://www.promisejs.org/
 [node-glob]: https://github.com/isaacs/node-glob
+[this syntax]: https://github.com/jonathantneal/eslit/blob/master/Lit%20Template%20(Babel).sublime-syntax
 
 [npm-url]: https://www.npmjs.com/package/eslit
 [npm-img]: https://img.shields.io/npm/v/eslit.svg

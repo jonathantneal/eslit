@@ -1,7 +1,7 @@
 {
   "name": "eslit",
   "version": "4.1.0",
-  "description": "es templates + async data",
+  "description": "ES6 Template Strings + Promises",
   "author": "Jonathan Neal <jonathantneal@hotmail.com> (http://jonathantneal.com)",
   "license": "CC0-1.0",
   "repository": "jonathantneal/eslit",
@@ -27,13 +27,13 @@
     "node": ">=6.5.0"
   },
   "dependencies": {
-    "babel-core": "^6.24.0",
+    "babel-core": "^6.24.1",
     "glob": "^7.1.1"
   },
   "devDependencies": {
     "echint": "^4.0.1",
     "echint-config-dev": "1.0.0",
-    "eslint": "^3.18.0",
+    "eslint": "^3.19.0",
     "eslint-config-dev": "^2.0.0",
     "pre-commit": "^1.2.2"
   },
