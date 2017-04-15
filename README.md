@@ -91,6 +91,26 @@ Use the `include` function to bring in other templates.
 - *Paths may use glob patterns or omit prefixes and extensions*
 - *Node modules are supported, using the package `template` or `main` keys, or by using `index.html`*
 
+#### Gulp
+
+Add [Gulp ESLit] to your build tool:
+
+```bash
+npm install gulp-eslit --save-dev
+```
+
+Enable [ESlit] within your Gulpfile:
+
+```js
+gulp.task('html', () => gulp.src(
+  'some/template.html'
+).pipe(
+  require('gulp-eslit')
+).pipe(
+  gulp.dest('./dist')
+);
+```
+
 ### ESLit.parse
 
 The parse function returns a promise to render the template string once its embedded promises are resolved.
@@ -122,6 +142,7 @@ eslit.resolve`Template literal to be ${ Promise.resolve('resolved') }`;
 
 [ESLit]: https://github.com/jonathantneal/eslit
 [ES6 Template Strings]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+[Gulp ESLit]: https://github.com/jonathantneal/gulp-eslit
 [Promise]: https://www.promisejs.org/
 [node-glob]: https://github.com/isaacs/node-glob
 [this syntax]: https://github.com/jonathantneal/eslit/blob/master/Lit%20Template%20(Babel).sublime-syntax
