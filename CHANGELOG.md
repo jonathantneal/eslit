@@ -1,5 +1,10 @@
 # Changes to ESLit
 
+### 4.2.0 (March 30, 2017)
+
+- Fixed: Path resolving in Windows
+- Updated: Documentation
+
 ### 4.1.0 (March 30, 2017)
 
 - Added: Support detected modules
