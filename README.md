@@ -63,10 +63,9 @@ ESLit returns a Promise to render a template once its embedded Promises are reso
 
 ```js
 require('eslit')(src, data, options);
-require('eslit').include(src, data, options);
 ```
 
-Use the `include` function to bring in other templates.
+Use the `include` function within templates to bring in other templates.
 
 ```jsx
 <h1>${ heading }</h1>
@@ -82,7 +81,6 @@ Use the `include` function to bring in other templates.
   - **cwd**: the path used by imports (default: `process.cwd()`).
   - **prefixes**: the file prefixes sometimes used by imports (default: `[ "_" ]`).
   - **extensions**: the file extensions sometimes used by imports (default: `[ ".html", ".jsx" ]`).
-  - **separator**: the separator used to split paths (default: `/`).
   - **globopts**: the options passed into [node-glob].
 
 *Notes*:
@@ -116,7 +114,7 @@ gulp.task('html', () => gulp.src(
 The parse function returns a promise to render the template string once its embedded promises are resolved.
 
 ```js
-eslit.parse( string, data, { cwd, prefixes, extensions, separator, globopts } );
+eslit.parse( string, data, { cwd, prefixes, extensions, globopts } );
 ```
 
 **string**: The string parsed as a template.
