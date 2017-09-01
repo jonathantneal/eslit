@@ -1,6 +1,10 @@
 # Changes to ESLit
 
-### 4.2.0 (March 30, 2017)
+### 5.0.0 (August 31, 2017)
+
+- Added: Support for Node v4
+
+### 4.2.0 (August 31, 2017)
 
 - Fixed: Path resolving in Windows
 - Updated: Documentation

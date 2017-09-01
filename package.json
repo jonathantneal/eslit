@@ -1,6 +1,6 @@
 {
   "name": "eslit",
-  "version": "4.2.0",
+  "version": "5.0.0",
   "description": "ES6 Template Strings + Promises",
   "author": "Jonathan Neal <jonathantneal@hotmail.com> (http://jonathantneal.com)",
   "license": "CC0-1.0",
