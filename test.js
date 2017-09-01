@@ -1,6 +1,17 @@
-// tooling
+// internal tooling
+const fs = require('fs');
+
+// local tooling
 const eslit = require('.');
-const readFile = require('./lib/read-file');
+
+// read file
+const readFile = (file) => new Promise(
+	(resolve, reject) => fs.readFile(
+		file,
+		'utf8',
+		(error, content) => error ? reject(error) : resolve(content)
+	)
+);
 
 // constants
 const testPath = 'test/basic';

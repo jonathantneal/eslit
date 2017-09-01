@@ -7,9 +7,11 @@
   "repository": "jonathantneal/eslit",
   "homepage": "https://github.com/jonathantneal/eslit#readme",
   "bugs": "https://github.com/jonathantneal/eslit/issues",
-  "main": "index.js",
+  "main": "index.dist.js",
+  "module": "index.js",
   "files": [
     "index.js",
+    "index.dist.js",
     "lib",
     "prototype"
   ],
@@ -17,25 +19,29 @@
     "clean": "git clean -X -d -f",
     "lint": "npm run lint:ec && npm run lint:js",
     "lint:ec": "echint",
-    "lint:js": "eslint *.js lib/*.js --cache --ignore-pattern .gitignore",
-    "pre-commit": "echo 'Running pre-commit checks...' && exit 0",
+    "lint:js": "eslint index.js lib/*.js --cache",
     "prepublish": "npm test",
-    "tape": "cd test && npm install && cd .. && node test",
-    "test": "npm run lint && npm run tape"
+    "prepublish:js": "rollup index.js --config .rollup.config.js --output.format cjs --sourcemap --output.file index.dist.js",
+    "tape": "npm run prepublish:js && cd test && npm install && cd .. && node test",
+    "test": "echo 'Running tests'; npm run lint && npm run tape"
   },
   "engines": {
-    "node": ">=6.5.0"
+    "node": ">=4.0.0"
   },
   "dependencies": {
     "babel-core": "^6.26.0",
     "glob": "^7.1.2"
   },
   "devDependencies": {
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.0",
     "echint": "^4.0.1",
     "echint-config-dev": "1.0.0",
     "eslint": "^4.5.0",
     "eslint-config-dev": "^2.0.0",
-    "pre-commit": "^1.2.2"
+    "pre-commit": "^1.2.2",
+    "rollup": "^0.49.2",
+    "rollup-plugin-babel": "^3.0.2"
   },
   "echint": {
     "extends": "dev"
@@ -43,10 +49,6 @@
   "eslintConfig": {
     "extends": "dev"
   },
-  "pre-commit": [
-    "pre-commit",
-    "lint"
-  ],
   "keywords": [
     "babel",
     "imports",
@@ -59,6 +61,6 @@
     "sugars",
     "tagged",
     "templates",
-    "templatings"
+    "templating"
   ]
 }
