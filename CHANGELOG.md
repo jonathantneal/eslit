@@ -1,5 +1,11 @@
 # Changes to ESLit
 
+### 6.0.0 (February 9, 2018)
+
+- Added: Support for `import`
+- Changed: Support for Node v6
+- Updated: babel dependencies to @babel dependencies
+
 ### 5.0.0 (August 31, 2017)
 
 - Added: Support for Node v4

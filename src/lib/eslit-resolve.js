@@ -8,12 +8,12 @@ export default (members, ...literals) => Promise.all(
 
 			const resolvedLiteral = Array.isArray(currentLiteral) ? currentLiteral.join('') : String(currentLiteral);
 
-			return `${ previousValue }${ resolvedLiteral }${ currentValue }`;
+			return `${previousValue}${resolvedLiteral}${currentValue}`;
 		}
 	)
 );
 
-const getResolvedPromises = (object) => {
+const getResolvedPromises = object => {
 	const promises = [];
 
 	if (object && typeof object === 'object') {
@@ -21,7 +21,7 @@ const getResolvedPromises = (object) => {
 			let element = object[key];
 
 			if (element instanceof Promise) {
-				promises.push(element.then((result) => {
+				promises.push(element.then(result => {
 					object[key] = result;
 				}));
 			}

@@ -30,18 +30,18 @@ export default (rawsrc, rawdata, rawopts) => {
 	return [].concat(
 		// assemble extension combinations
 		Array.isArray(extensions) ? extensions.map(
-			(extension) => ['', extension]
+			extension => ['', extension]
 		) : []
 	).concat(
 		// assemble prefix combinations
 		Array.isArray(prefixes) ? prefixes.map(
-			(prefix) => [prefix, '']
+			prefix => [prefix, '']
 		) : []
 	).concat(
 		// assemble prefix + extension combinations
 		Array.isArray(prefixes) ? prefixes.map(
-			(prefix) => Array.isArray(extensions) ? extensions.map(
-				(extension) => [prefix, extension]
+			prefix => Array.isArray(extensions) ? extensions.map(
+				extension => [prefix, extension]
 			) : []
 		) : []
 	).reduce(
@@ -83,7 +83,7 @@ export default (rawsrc, rawdata, rawopts) => {
 			// return accessible module src, or module src+package.json file
 			(promise, pathname) => promise.catch(
 				() => hasPaths ? access(pathname) : access(pathname).then(json).then(
-					(pkg) => getPackageFile(
+					pkg => getPackageFile(
 						path.dirname(pathname),
 						pkg
 					)
@@ -94,20 +94,20 @@ export default (rawsrc, rawdata, rawopts) => {
 	).catch(
 		() => []
 	).then(
-		(allsrcs) => Promise.all(
+		allsrcs => Promise.all(
 			allsrcs.map(
-				(eachsrc) => read(eachsrc).catch(
-					(error) => error.code === 'EISDIR' ? json([
+				eachsrc => read(eachsrc).catch(
+					error => error.code === 'EISDIR' ? json([
 						path.join(eachsrc, 'package.json')
 					]).then(
-						(pkg) => getPackageFile(eachsrc, pkg).then(
+						pkg => getPackageFile(eachsrc, pkg).then(
 							([ innersrc ]) => read(innersrc)
 						)
 					) : Promise.reject(error)
 				)
 			)
 		).then(
-			(strings) => parse(
+			strings => parse(
 				strings.join(''),
 				rawdata,
 				Object.assign(

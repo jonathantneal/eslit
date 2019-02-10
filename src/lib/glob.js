@@ -17,7 +17,7 @@ export default (id, cwd, opts) => new Promise(
 		),
 		(error, files) => error ? reject(error) : files.length ? resolve(
 			files.map(
-				(file) => path.join(cwd, file)
+				file => path.join(cwd, file)
 			)
 		) : reject(files)
 	)

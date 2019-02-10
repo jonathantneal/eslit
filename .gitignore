@@ -1,9 +1,8 @@
-node_modules
 .*
-!.*.config.js
 !.editorconfig
 !.gitignore
 !.travis.yml
 *.log*
-index.dist.js*
+/index.*
+node_modules
 package-lock.json

@@ -13,7 +13,7 @@ export default function parse(string = '', rawdata, rawopts) {
 
 	// args from data
 	const args = keys.map(
-		(key) => data[key]
+		key => data[key]
 	);
 
 	const eslitRequire = (newsrc, newdata, newopts) => include(

@@ -2,7 +2,7 @@
 import fs from 'fs';
 
 // readFile, then-ified
-export default (file) => new Promise(
+export default file => new Promise(
 	(resolve, reject) => fs.readFile(
 		file,
 		'utf8',
